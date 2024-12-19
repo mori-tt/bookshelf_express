@@ -9,7 +9,7 @@
 # https://github.com/Huachao/vscode-restclient
 
 ###
-GET http://localhost:8080/api/products
+GET http://localhost:8080/api/books
 
 ###
 GET http://localhost:8080/api/products/2
