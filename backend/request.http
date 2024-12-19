@@ -12,27 +12,30 @@
 GET http://localhost:8080/api/books
 
 ###
-GET http://localhost:8080/api/products/2
+GET http://localhost:8080/api/books/{id}
 
-### 
-# POST http://localhost:8080/create-productå
-POST http://localhost:8080/api/products
+### delete
+DELETE http://localhost:8080/api/books/{id}
+
+
+### post
+POST http://localhost:8080/api/books
 content-type: application/json
 
 {
-  "name": "bed",
-  "price": 1500
+  "title":"テストデータ",
+  "description": "説明欄の内容です",
+  "comment": "コメントの内容です",
+  "rating":2
 }
 
 ### delete
-# POST http://localhost:8080/delete-product
-DELETE http://localhost:8080/api/products/3
+DELETE http://localhost:8080/api/books/{id}
 
 ### update
-# PATCH http://localhost:8080/update-product
-PATCH http://localhost:8080/api/products/2
+PATCH http://localhost:8080/api/books/{id}
 content-type: application/json
 
 {
-  "price": 10000
+  "rating":5
 }
