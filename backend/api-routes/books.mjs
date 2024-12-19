@@ -1,5 +1,7 @@
 import express from "express";
+import { body } from "express-validator";
 import Book from "../models/book.mjs";
+import { registBook, updateBook } from "../controllers/books.mjs";
 
 const router = express.Router();
 
@@ -15,23 +17,23 @@ router.get("/:id", async function (req, res) {
   res.json(book);
 });
 
-router.post("/", async function (req, res) {
-  const book = new Book(req.body);
-  const newBook = await book.save();
-  res.json(newBook);
-});
+router.post(
+  "/",
+  body("title").notEmpty(),
+  body("description").notEmpty(),
+  body("comment").notEmpty(),
+  body("rating").notEmpty().isInt({ min: 1, max: 5 }),
+  registBook
+);
 
-router.patch("/:id", async function (req, res) {
-  const { title, description, comment, rating } = req.body;
-  const _id = req.params.id;
-  const book = await Book.findById(_id);
-  if (title !== undefined) book.title = title;
-  if (description !== undefined) book.description = description;
-  if (comment !== undefined) book.comment = comment;
-  if (rating !== undefined) book.rating = rating;
-  await book.save();
-  res.json(book);
-});
+router.patch(
+  "/:id",
+  body("title").optional().notEmpty(),
+  body("description").optional().notEmpty(),
+  body("comment").optional().notEmpty(),
+  body("rating").optional().notEmpty().isInt({ min: 1, max: 5 }),
+  updateBook
+);
 
 router.delete("/:id", async function (req, res) {
   const _id = req.params.id;

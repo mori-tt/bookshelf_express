@@ -23,10 +23,10 @@ POST http://localhost:8080/api/books
 content-type: application/json
 
 {
-  "title":"テストデータ",
-  "description": "説明欄の内容です",
-  "comment": "コメントの内容です",
-  "rating":2
+  "title":"1",
+  "description": "2",
+  "comment": "3",
+  "rating":4
 }
 
 ### delete
