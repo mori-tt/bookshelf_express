@@ -19,7 +19,7 @@ DELETE http://localhost:8080/api/books/{id}
 
 
 ### post
-POST http://localhost:8080/api/books
+POST http://localhost:8080/api/books/{id}
 content-type: application/json
 
 {
@@ -37,5 +37,5 @@ PATCH http://localhost:8080/api/books/{id}
 content-type: application/json
 
 {
-  "rating":5
+  "rating":1
 }

@@ -11,6 +11,17 @@ app.use(express.json());
 
 app.use("/api", apiRoutes);
 
+app.use(function (req, res) {
+  res.status(404).json({ msg: "Page Not Found" });
+});
+
+app.use(function (err, req, res, next) {
+  if (res.headersSent) {
+    return next(err);
+  }
+  res.status(500).json({ msg: "不正なエラーが発生しました。" });
+});
+
 app.listen(port, function () {
   console.log(`Server Start: http://localhost:${port}`);
 });
