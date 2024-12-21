@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "dev": "npx nodemon app.mjs",
-    "build": "node scripts/build.js",
+    "build": "echo 'No build step required'",
     "start": "node app.mjs"
   },
   "author": "",
