@@ -7,7 +7,15 @@ import "./helpers/db.mjs";
 const app = express();
 const port = process.env.PORT || 8080;
 
+import cors from "cors";
 app.use(express.json());
+
+app.use(
+  cors({
+    origin: process.env.FRONT_URL,
+    credentials: true,
+  })
+);
 
 app.use("/api", apiRoutes);
 

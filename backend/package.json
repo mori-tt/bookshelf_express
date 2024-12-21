@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "dev:api": "npx nodemon app.mjs"
+    "dev": "npx nodemon app.mjs"
   },
   "author": "",
   "license": "ISC",
