@@ -3,22 +3,26 @@ import apiRoutes from "./api-routes/index.mjs";
 import env from "dotenv";
 env.config();
 import "./helpers/db.mjs";
+import path from "path";
 
 const app = express();
 const port = process.env.PORT || 8080;
 
-import cors from "cors";
 app.use(express.json());
 
-app.use(
-  cors({
-    origin: process.env.FRONT_URL,
-    credentials: true,
-  })
-);
+// 静的ファイルの提供を先に設定
+app.use(express.static("../frontend/dist"));
 
+// APIルートの設定
 app.use("/api", apiRoutes);
 
+// すべてのルートをindex.htmlにリダイレクト（SPAのため）
+app.get("*", (req, res) => {
+  const indexHtml = path.resolve("../frontend/dist", "index.html");
+  res.sendFile(indexHtml);
+});
+
+// エラーハンドリング
 app.use(function (req, res) {
   res.status(404).json({ msg: "Page Not Found" });
 });

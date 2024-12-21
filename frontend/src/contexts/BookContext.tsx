@@ -13,10 +13,6 @@ const BookDispatchContext = createContext<React.Dispatch<BookContextAction>>(
 const useBooks = () => useContext(BookContext);
 const useDispatchBooks = () => useContext(BookDispatchContext);
 
-interface BookContextState {
-  books: Book[];
-}
-
 type BookContextAction =
   | {
       type: "book/init";
