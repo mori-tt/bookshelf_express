@@ -12,9 +12,9 @@ axios.interceptors.response.use(
   }
 );
 
-axios.defaults.withCredentials = true;
+axios.defaults.withCredentials = false;
 
-const ENDPOINT_URL = `${import.meta.env.VITE_BACK_URL}/api/books`;
+const ENDPOINT_URL = import.meta.env.VITE_BACK_URL + "/api/books";
 
 const bookApi = {
   async get(id: string) {

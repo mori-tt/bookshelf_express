@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import apiRoutes from "./api-routes/index.mjs";
 import env from "dotenv";
 env.config();
@@ -12,12 +13,12 @@ const app = express();
 const port = process.env.PORT || 8080;
 
 // CORSの設定を追加
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", process.env.FRONTEND_URL || "*");
-  res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,PATCH");
-  res.header("Access-Control-Allow-Headers", "Content-Type");
-  next();
-});
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL || "*",
+    credentials: false,
+  })
+);
 
 app.use(express.json());
 
