@@ -15,7 +15,7 @@ const port = process.env.PORT || 8080;
 // CORSの設定を追加
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL || "*",
+    origin: process.env.FRONT_URL,
     credentials: false,
   })
 );
