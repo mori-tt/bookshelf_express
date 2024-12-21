@@ -2,8 +2,14 @@ import { validationResult } from "express-validator";
 import Book from "../models/book.mjs";
 
 async function getAllBooks(req, res) {
-  const books = await Book.find().sort({ updatedAt: -1 });
-  res.json(books);
+  try {
+    const books = await Book.find().sort({ updatedAt: -1 });
+    console.log("Books retrieved:", books.length);
+    res.json(books);
+  } catch (error) {
+    console.error("Error fetching books:", error);
+    res.status(500).json({ error: "Failed to fetch books" });
+  }
 }
 
 async function getBookById(req, res) {

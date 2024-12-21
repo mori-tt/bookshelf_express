@@ -2,11 +2,22 @@ import express from "express";
 import apiRoutes from "./api-routes/index.mjs";
 import env from "dotenv";
 env.config();
+
+// データベース接続のデバッグログを追加
+console.log("Attempting to connect to MongoDB...");
+console.log("MONGO_URI exists:", !!process.env.MONGO_URI);
 import "./helpers/db.mjs";
-import path from "path";
 
 const app = express();
 const port = process.env.PORT || 8080;
+
+// CORSの設定を追加
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", process.env.FRONTEND_URL || "*");
+  res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,PATCH");
+  res.header("Access-Control-Allow-Headers", "Content-Type");
+  next();
+});
 
 app.use(express.json());
 
